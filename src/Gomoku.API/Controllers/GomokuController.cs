@@ -31,14 +31,14 @@ namespace Gomoku.Controllers
         }
 
         [HttpPut("play/stone/place")]
-        public async Task<IActionResult> Place([FromBody] Point point)
+        public IActionResult Place([FromBody] Point point)
         {
-            var result = await _mediator.Send(new PlaceStoneRequest()
+            var result = _mediator.Send(new PlaceStoneRequest()
             {
                 Point = point
             });
 
-            return Ok(result.PlacementResult);
+            return Ok(result.Result.PlacementResult);
         }
     }
 }
