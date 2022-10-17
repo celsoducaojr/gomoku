@@ -13,5 +13,5 @@ API support
 
 
 # Project Structure
-![image](https://user-images.githubusercontent.com/24907545/196080161-06ed5335-d141-4d92-adbd-9d69e2543e08.png)
+![image](https://user-images.githubusercontent.com/24907545/196081452-b4dde544-78f8-49aa-983e-0aa712716a20.png)
 
