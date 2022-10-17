@@ -1,14 +1,9 @@
-using FluentAssertions;
 using Gomoku.Domain;
 using Gomoku.Domain.Chains;
 using Gomoku.Domain.PlacementResults;
 using Gomoku.Domain.Players;
-using Gomoku.Domain.Repositories;
 using Gomoku.Test.Infra;
-using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.OpenApi.Validations.Rules;
 using Moq;
-using System;
 using System.Collections.Generic;
 using Xunit;
 

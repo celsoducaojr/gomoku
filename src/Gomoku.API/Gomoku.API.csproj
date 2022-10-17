@@ -22,4 +22,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Gomoku.Domain\Gomoku.Domain.csproj" />
+    <ProjectReference Include="..\Gomoku.Infrastructure\Gomoku.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

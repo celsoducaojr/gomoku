@@ -22,7 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gomoku.API\Gomoku.API.csproj" />
+    <ProjectReference Include="..\Gomoku.Domain\Gomoku.Domain.csproj" />
+    <ProjectReference Include="..\Gomoku.Infrastructure\Gomoku.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
