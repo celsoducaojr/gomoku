@@ -12,6 +12,7 @@ API support
 3. Unit Test
 
 
-# Project Structure
-![image](https://user-images.githubusercontent.com/24907545/196081452-b4dde544-78f8-49aa-983e-0aa712716a20.png)
+# Project Code Structure
+![image](https://user-images.githubusercontent.com/24907545/196082377-cdadb1ee-10f3-4aab-9da8-ed674bfb6baa.png)
+
 
