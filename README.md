@@ -10,3 +10,8 @@ API support
 1. Clear Achitecture
 2. Mediator Pattern
 3. Unit Test
+
+
+# Project Structure
+![image](https://user-images.githubusercontent.com/24907545/196080161-06ed5335-d141-4d92-adbd-9d69e2543e08.png)
+
