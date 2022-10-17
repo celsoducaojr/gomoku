@@ -2,6 +2,7 @@ using Gomoku.Domain;
 using Gomoku.Domain.Chains;
 using Gomoku.Domain.PlacementResults;
 using Gomoku.Domain.Players;
+using Gomoku.Infrastructure;
 using Gomoku.Test.Infra;
 using Moq;
 using System.Collections.Generic;
@@ -22,11 +23,11 @@ namespace Gomoku.Test
                     GetForwardDiagonalChain(),
                     GetBackwardDiagonalChain()
                 });
-            var board = new Board(player1.Object, new Mock<IPlayer2>().Object);
+            var board = new Board(player1.Object, new Mock<IPlayer2>().Object, new BoardRepo());
 
             var result = board.PlaceStone(new Point(1, 5));
 
-            Assert.True(result is WinPlacementResult placement);
+            Assert.True(result is WinPlacementResult);
             Assert.True(((WinPlacementResult)result).Chains.Count == 4);
         }
     }

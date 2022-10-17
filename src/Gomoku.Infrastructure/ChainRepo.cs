@@ -6,6 +6,13 @@ namespace Gomoku.Infrastructure
 {
     public class ChainRepo : IChainRepo
     {
-        public IList<List<Point>> Chains { get; } = new List<List<Point>>();
+        public IList<List<Point>> Chains { get; set; }
+
+        public ChainRepo()
+        {
+            Chains = new List<List<Point>>();
+        }
+
+       
     }
 }

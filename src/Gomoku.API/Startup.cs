@@ -65,7 +65,8 @@ namespace Gomoku
             services.AddTransient<IForwardDiagonalChain, ForwardDiagonalChain>();
             services.AddTransient<IBackwardDiagonalChain, BackwardDiagonalChain>();
 
-            // Register Infrastructure
+            // Register Infrastructure - database implementation example
+            services.AddTransient<IBoardRepo, BoardRepo>();
             services.AddTransient<IChainRepo, ChainRepo>();
         }
 
