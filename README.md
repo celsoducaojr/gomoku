@@ -6,7 +6,7 @@ API support
 2. Place a stone and report back whether the placement resulted in a win
 
 
-# Basic Implementation
+Basic Implementation
 1. Clear Achitecture
 2. Mediator Pattern
 3. Unit Test
