@@ -7,7 +7,7 @@ API support
 
 
 Basic Implementation
-1. Clear Achitecture
+1. Clean Achitecture
 2. Mediator Pattern
 3. Unit Test
 
