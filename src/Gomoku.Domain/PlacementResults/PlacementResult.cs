@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
-using Gomoku.Domain.Enums;
-
-namespace Gomoku.Domain.PlacementResults
+﻿namespace Gomoku.Domain.PlacementResults
 {
     public class PlacementResult
     {
         public bool IsGameOver { get; } = false;
         public string Message { get; }
 
-        public PlacementResult(Player player)
+        public PlacementResult(Game.PlayerNumber player)
         {
             Message = $"Player {(int)player}'s turn.";
         }

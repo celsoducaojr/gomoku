@@ -1,17 +1,20 @@
-﻿using Gomoku.Domain.Chains;
+﻿using Gomoku.Domain.ChainPatterns;
 using System.Collections.Generic;
 
 namespace Gomoku.Domain.Players
 {
     public interface IPlayer2 : IPlayer { }
+
     public class Player2 : IPlayer2
     {
-        public IList<IChain> Placements { get; }
+        public IList<IChainPattern> Placements { get; }
 
-        public Player2(IHorizontalChain horizontal, IVerticalChain vertical
-            , IForwardDiagonalChain forwardDiagonal, IBackwardDiagonalChain backwardDiagonal)
+        public Player2(IHorizontalChainPattern horizontal,
+            IVerticalChainPattern vertical,
+            IForwardDiagonalChainPattern forwardDiagonal,
+            IBackwardDiagonalChainPattern backwardDiagonal)
         {
-            Placements = new List<IChain>
+            Placements = new List<IChainPattern>
             {
                 horizontal,
                 vertical,

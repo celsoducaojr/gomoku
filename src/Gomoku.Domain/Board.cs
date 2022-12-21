@@ -1,8 +1,6 @@
-﻿using Gomoku.Domain.Enums;
-using Gomoku.Domain.Exceptions;
+﻿using Gomoku.Domain.Exceptions;
+using Gomoku.Domain.IRepositories;
 using Gomoku.Domain.PlacementResults;
-using Gomoku.Domain.Players;
-using Gomoku.Domain.Repositories;
 using System.Collections.Generic;
 
 namespace Gomoku.Domain
@@ -16,66 +14,65 @@ namespace Gomoku.Domain
 
     public class Board : IBoard
     {
-        IPlayer1 _player1;
-        IPlayer2 _player2;
+        readonly IGameRepository _repository;
 
-        IBoardRepo _repo;
-
-        public Board(IPlayer1 player1, IPlayer2 player2, IBoardRepo repo)
+        public Board(IGameRepository repository)
         {
-            _player1 = player1;
-            _player2 = player2;
-
-            _repo = repo;
+            _repository = repository;
         }
 
         public PlacementResult PlaceStone(Point point)
         {
-            if (_repo.Placements.TryGetValue($"{point.X},{point.Y}", out Player player))
-            {
-                throw new ConflictException($"Stone placement already exist. Moved by Player {(int)player}.");
-            }
-            _repo.Placements.Add($"{point.X},{point.Y}", _repo.Player);
+            var game = _repository.Get();
+            var collectivePoints = game.GetCollectivePoints();
 
-            var placements = _repo.Player == Player.One ? _player1.Placements : _player2.Placements;
-            var completedChains = new List<List<Point>>();
+            // Validate duplicate placement
+            if (collectivePoints.Contains(point))
+            {
+                throw new ConflictException($"Stone placement already exist.");
+            }
+
+            // Set player
+            var player = game.GetCurrentPlayer();
+            var placements = player.Placements;
+            var chainedPlacement = new ChainList();
 
             foreach (var chain in placements)
             {
-                if (chain.ConfirmPlacement(point, out List<Point> chains))
+                if (chain.ConfirmPlacement(point, out Chain chains))
                 {
-                    completedChains.Add(chains);
+                    chainedPlacement.Add(chains);
                 }
             }
 
+            // Validate placement result
             PlacementResult result;
 
-            if (completedChains.Count > 0) // We have a winner
+            if (chainedPlacement.Count > 0) // We have a winner
             {
-                result = new WinPlacementResult(_repo.Player, completedChains);
+                result = new WinPlacementResult(game.CurrentPlayerNumber, chainedPlacement);
                 Clear(); 
             }
-            else if (_repo.Placements.Count == 13 * 13) // It's a draw
+            else if (collectivePoints.Count == 13 * 13) // It's a draw (15 x 15 board)
             {
                 result = new DrawPlacementResult();
-                Clear(); 
+                Clear();
             }
-            else
+            else // Set next turn
             {
-                _repo.Player = _repo.Player == Player.One ? Player.Two : Player.One; // Set turn
-                result = new PlacementResult(_repo.Player);
+                game.SetNextTurn();
+                result = new PlacementResult(game.CurrentPlayerNumber);
             }
+
+            // Save changes
+            _repository.Save(game);
 
             return result;
         }
 
         public void Clear()
         {
-            _player1.Clear();
-            _player2.Clear();
-
-            _repo.Player = Player.One;
-            _repo.Placements.Clear();
+            _repository.Clear();
         }
     }
 

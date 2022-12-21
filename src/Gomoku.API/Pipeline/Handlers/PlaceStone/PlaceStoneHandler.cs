@@ -9,7 +9,7 @@ namespace Gomoku.Pipeline.Handlers.PlaceStone
 {
     public class PlaceStoneHandler : IRequestHandler<PlaceStoneRequest, PlaceStoneResponse>
     {
-        IBoard _board;
+       IBoard _board;
 
         public PlaceStoneHandler(IBoard board)
         {

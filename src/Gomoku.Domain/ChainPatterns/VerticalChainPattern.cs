@@ -1,27 +1,21 @@
-﻿using Gomoku.Domain.Repositories;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Gomoku.Domain.Chains
+namespace Gomoku.Domain.ChainPatterns
 {
-    public interface IVerticalChain : IChain { }
-    public class VerticalChain : BaseChain, IVerticalChain
+    public interface IVerticalChainPattern : IChainPattern { }
+    public class VerticalChainPattern : ChainPatternBase, IVerticalChainPattern
     {
-        public IChainRepo ChainRepo { get; }
-
-        public VerticalChain(IChainRepo chainRepo)
-        {
-            ChainRepo = chainRepo;
-        }
+        public ChainList Chains { get; } = new ChainList();
 
         public void Clear()
         {
-            ChainRepo.Chains.Clear();
+            Chains.Clear();
         }
 
-        public bool ConfirmPlacement(Point point, out List<Point> chain)
+        public bool ConfirmPlacement(Point point, out Chain chain)
         {
-            var c = ChainRepo.Chains.Where(p => p[0].Y == point.Y).FirstOrDefault();
+            var c = Chains.Where(p => p[0].Y == point.Y).FirstOrDefault();
 
             if (c != null)
             {
@@ -36,16 +30,16 @@ namespace Gomoku.Domain.Chains
             }
             else
             {
-                ChainRepo.Chains.Add(new List<Point> { point });
+                Chains.Add(new Chain { point });
 
                 chain = null;
                 return false;
             }
         }
 
-        protected override List<Point> Insert(List<Point> chain, Point point)
+        protected override Chain Insert(Chain chain, Point point)
         {
-            var chained = new List<Point>();
+            var chained = new Chain();
             var inserted = false;
 
             for (int x = 0; x < chain.Count; x++)

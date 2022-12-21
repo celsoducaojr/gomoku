@@ -27,5 +27,17 @@ namespace Gomoku.Domain
         {
             return point1.X != point2.X || point1.Y != point2.Y;
         }
+
+        public override bool Equals(object obj)
+        {
+            var point = obj as Point;
+
+            return point.X == X && point.Y == Y;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

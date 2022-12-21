@@ -30,7 +30,7 @@ namespace Gomoku.Controllers
             return Ok();
         }
 
-        [HttpPut("play/stone/place")]
+        [HttpPut("game/stone/place")]
         public IActionResult Place([FromBody] Point point)
         {
             var result = _mediator.Send(new PlaceStoneRequest()

@@ -1,28 +1,19 @@
 using FluentValidation;
-using FluentValidation.AspNetCore;
 using Gomoku.Domain;
-using Gomoku.Domain.Chains;
+using Gomoku.Domain.ChainPatterns;
+using Gomoku.Domain.IRepositories;
 using Gomoku.Domain.Players;
-using Gomoku.Domain.Repositories;
-using Gomoku.Infrastructure;
+using Gomoku.Infrastructure.Repositories;
 using Gomoku.Middleware;
 using Gomoku.Pipeline.Handlers;
-using Gomoku.Pipeline.Handlers.PlaceStone;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 
 namespace Gomoku
@@ -58,16 +49,16 @@ namespace Gomoku
 
             // Register Domains
             services.AddSingleton<IBoard, Board>();
-            services.AddSingleton<IPlayer1, Player1>();
-            services.AddSingleton<IPlayer2, Player2>();
-            services.AddTransient<IHorizontalChain, HorizontalChain>();
-            services.AddTransient<IVerticalChain, VerticalChain>();
-            services.AddTransient<IForwardDiagonalChain, ForwardDiagonalChain>();
-            services.AddTransient<IBackwardDiagonalChain, BackwardDiagonalChain>();
+            services.AddTransient<Game>();
+            services.AddTransient<IPlayer1, Player1>();
+            services.AddTransient<IPlayer2, Player2>();
+            services.AddTransient<IHorizontalChainPattern, HorizontalChainPattern>();
+            services.AddTransient<IVerticalChainPattern, VerticalChainPattern>();
+            services.AddTransient<IForwardDiagonalChainPattern, ForwardDiagonalChainPattern>();
+            services.AddTransient<IBackwardDiagonalChainPattern, BackwardDiagonalChainPattern>();
 
             // Register Infrastructure - database implementation example
-            services.AddTransient<IBoardRepo, BoardRepo>();
-            services.AddTransient<IChainRepo, ChainRepo>();
+            services.AddSingleton<IGameRepository, GameRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

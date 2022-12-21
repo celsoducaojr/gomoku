@@ -1,4 +1,5 @@
 ﻿using Gomoku.Domain;
+using Gomoku.Domain.Players;
 using MediatR;
 using System;
 using System.Net.NetworkInformation;

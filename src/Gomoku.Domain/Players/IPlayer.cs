@@ -1,11 +1,11 @@
-﻿using Gomoku.Domain.Chains;
+﻿using Gomoku.Domain.ChainPatterns;
 using System.Collections.Generic;
 
 namespace Gomoku.Domain.Players
 {
     public interface IPlayer
     {
-        IList<IChain> Placements { get; }
+        IList<IChainPattern> Placements { get; }
         void Clear();
     }
 }

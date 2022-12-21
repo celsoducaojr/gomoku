@@ -1,13 +1,17 @@
-﻿using Gomoku.Domain.Repositories;
-using System.Collections.Generic;
-
-namespace Gomoku.Domain.Chains
+﻿namespace Gomoku.Domain.ChainPatterns
 {
-    public abstract class BaseChain
+    public interface IChainPattern
     {
-        protected virtual List<Point> Insert(List<Point> chain, Point point)
+        ChainList Chains { get; }
+        bool ConfirmPlacement(Point point, out Chain chain);
+        void Clear();
+    }
+
+    public abstract class ChainPatternBase
+    {
+        protected virtual Chain Insert(Chain chain, Point point)
         {
-            var chained = new List<Point>();
+            var chained = new Chain();
             var inserted = false;
 
             for (int x = 0; x < chain.Count; x++)

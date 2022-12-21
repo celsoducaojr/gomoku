@@ -1,7 +1,4 @@
-﻿using Gomoku.Domain.Enums;
-using System.Collections.Generic;
-
-namespace Gomoku.Domain.PlacementResults
+﻿namespace Gomoku.Domain.PlacementResults
 {
     public class DrawPlacementResult : PlacementResult
     {
