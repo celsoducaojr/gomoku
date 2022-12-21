@@ -18,11 +18,11 @@ using ValidationException = Gomoku.Pipeline.Handlers.ValidationException;
 
 namespace Gomoku.Middleware
 {
-    public class ExceptionHandling
+    public class ExceptionHandler
     {
         readonly RequestDelegate _Next;
 
-        public ExceptionHandling(RequestDelegate next)
+        public ExceptionHandler(RequestDelegate next)
         {
             _Next = next ?? throw new ArgumentNullException(nameof(next));
         }

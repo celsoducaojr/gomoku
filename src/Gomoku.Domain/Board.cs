@@ -23,7 +23,7 @@ namespace Gomoku.Domain
 
         public PlacementResult PlaceStone(Point point)
         {
-            var game = _repository.Get();
+            var game = _repository.GetGame();
             var collectivePoints = game.GetCollectivePoints();
 
             // Validate duplicate placement
@@ -63,9 +63,6 @@ namespace Gomoku.Domain
                 game.SetNextTurn();
                 result = new PlacementResult(game.CurrentPlayerNumber);
             }
-
-            // Save changes
-            _repository.Save(game);
 
             return result;
         }

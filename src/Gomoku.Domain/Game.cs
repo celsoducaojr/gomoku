@@ -31,14 +31,14 @@ namespace Gomoku.Domain
 
             foreach (var placement in Player1.Placements)
             {
-                foreach (var chain in placement.Chains) 
+                foreach (var chain in placement.GetChains()) 
                     foreach (var point in chain)
                         points.Add(point);
             }
 
             foreach (var placement in Player2.Placements)
             {
-                foreach (var chain in placement.Chains)
+                foreach (var chain in placement.GetChains())
                     foreach (var point in chain)
                         points.Add(point);
             }

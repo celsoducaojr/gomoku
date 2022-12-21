@@ -10,20 +10,16 @@ namespace Gomoku.Infrastructure.Repositories
 {
     public class GameRepository : IGameRepository
     {
-        Game _game;
+        readonly Game _game;
+
         public GameRepository(Game game) 
         {
             _game = game;
         }
 
-        public Game Get()
+        public Game GetGame()
         {
             return _game;
-        }
-
-        public void Save(Game game)
-        {
-            // Save data changes
         }
 
         public void Clear()

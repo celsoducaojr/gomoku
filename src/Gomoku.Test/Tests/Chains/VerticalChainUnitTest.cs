@@ -3,7 +3,7 @@ using Gomoku.Test.Infra;
 using System.Collections.Generic;
 using Xunit;
 
-namespace Gomoku.Test.Chains
+namespace Gomoku.Test.Tests.Chains
 {
     public class VerticalChainUnitTest : BaseUnitTest
     {
@@ -12,7 +12,7 @@ namespace Gomoku.Test.Chains
         {
             var verticalChain = GetVerticalChain();
 
-            var result = verticalChain.ConfirmPlacement(new Point(1, 5), out List<Point> actualChain);
+            var result = verticalChain.ConfirmPlacement(new Point(1, 5), out Chain actualChain);
 
             Assert.True(result);
             Assert.True(actualChain[0] == new Point(1, 5));

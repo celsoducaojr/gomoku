@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Gomoku.Domain.IRepositories;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Gomoku.Domain.ChainPatterns
@@ -6,16 +7,23 @@ namespace Gomoku.Domain.ChainPatterns
     public interface IVerticalChainPattern : IChainPattern { }
     public class VerticalChainPattern : ChainPatternBase, IVerticalChainPattern
     {
-        public ChainList Chains { get; } = new ChainList();
+        IChainPatternRepository _repository;
 
-        public void Clear()
+        public VerticalChainPattern(IChainPatternRepository repository)
         {
-            Chains.Clear();
+            _repository = repository;
+        }
+
+        public ChainList GetChains()
+        {
+            return _repository.GetChains();
         }
 
         public bool ConfirmPlacement(Point point, out Chain chain)
         {
-            var c = Chains.Where(p => p[0].Y == point.Y).FirstOrDefault();
+            var chains = _repository.GetChains();
+
+            var c = chains.Where(p => p[0].Y == point.Y).FirstOrDefault();
 
             if (c != null)
             {
@@ -30,11 +38,18 @@ namespace Gomoku.Domain.ChainPatterns
             }
             else
             {
-                Chains.Add(new Chain { point });
+                chains.Add(new Chain { point });
 
                 chain = null;
                 return false;
             }
+
+            
+        }
+
+        public void Clear()
+        {
+            _repository.Clear();
         }
 
         protected override Chain Insert(Chain chain, Point point)

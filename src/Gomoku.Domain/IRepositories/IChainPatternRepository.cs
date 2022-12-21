@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Gomoku.Domain.IRepositories
 {
-    public interface IGameRepository : IRepository
+    public interface IChainPatternRepository : IRepository
     {
-        Game GetGame();
+        ChainList GetChains();
 
         // Add SaveChains method here...
 

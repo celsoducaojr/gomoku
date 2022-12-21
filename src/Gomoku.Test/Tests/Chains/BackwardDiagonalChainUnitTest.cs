@@ -1,9 +1,10 @@
 using Gomoku.Domain;
 using Gomoku.Test.Infra;
 using System.Collections.Generic;
+using System.Reflection;
 using Xunit;
 
-namespace Gomoku.Test.Chains
+namespace Gomoku.Test.Tests.Chains
 {
     public class BackwardDiagonalChainUnitTest : BaseUnitTest
     {
@@ -12,7 +13,7 @@ namespace Gomoku.Test.Chains
         {
             var chain = GetBackwardDiagonalChain();
 
-            var result = chain.ConfirmPlacement(new Point(1, 5), out List<Point> actualChain);
+            var result = chain.ConfirmPlacement(new Point(1, 5), out Chain actualChain);
 
             Assert.True(result);
             Assert.True(actualChain[0] == new Point(1, 5));

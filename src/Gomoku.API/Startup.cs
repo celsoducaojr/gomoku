@@ -50,6 +50,7 @@ namespace Gomoku
             // Register Domains
             services.AddSingleton<IBoard, Board>();
             services.AddTransient<Game>();
+            services.AddTransient<ChainList>();
             services.AddTransient<IPlayer1, Player1>();
             services.AddTransient<IPlayer2, Player2>();
             services.AddTransient<IHorizontalChainPattern, HorizontalChainPattern>();
@@ -59,6 +60,7 @@ namespace Gomoku
 
             // Register Infrastructure - database implementation example
             services.AddSingleton<IGameRepository, GameRepository>();
+            services.AddSingleton<IChainPatternRepository, ChainPatternRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,9 +73,9 @@ namespace Gomoku
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Gomoku v1"));
             }
 
-            app.UseHttpsRedirection();
+            app.UseMiddleware<ExceptionHandler>();
 
-            app.UseMiddleware<ExceptionHandling>();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -83,6 +85,8 @@ namespace Gomoku
             {
                 endpoints.MapControllers();
             });
+
+            
         }
     }
 }

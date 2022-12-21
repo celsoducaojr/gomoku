@@ -2,7 +2,7 @@
 {
     public interface IChainPattern
     {
-        ChainList Chains { get; }
+        ChainList GetChains();
         bool ConfirmPlacement(Point point, out Chain chain);
         void Clear();
     }
