@@ -5,12 +5,12 @@ API support
 1. Create a board
 2. Place a stone and report back whether the placement resulted in a win
 
-
 Basic Implementation
 1. Clean Achitecture
-2. Mediator Pattern
-3. Unit Test
-
+2. Rich Domain Model
+3. Dependency Injection
+4. Mediator Pattern
+5. Unit Test
 
 # Project Code Structure
 ![image](https://user-images.githubusercontent.com/24907545/196082377-cdadb1ee-10f3-4aab-9da8-ed674bfb6baa.png)
