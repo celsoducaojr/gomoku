@@ -36,7 +36,6 @@ namespace Gomoku.Test.Tests
 
             // Act
             var board = new Board(gameRepo.Object);
-
             var result = board.PlaceStone(new Point(1, 5));
 
             // Assert
